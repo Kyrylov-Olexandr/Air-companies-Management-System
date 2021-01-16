@@ -1,13 +1,13 @@
-package com.air.demo;
+package com.air.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AirCompaniesManagementSystemApplication {
+public class AirCompanyManagmentSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AirCompaniesManagementSystemApplication.class, args);
+		SpringApplication.run(AirCompanyManagmentSystemApplication.class, args);
 	}
 
 }

@@ -1,6 +1,6 @@
-package com.air.demo.service;
+package com.air.main.service;
 
-import com.air.demo.model.AirCompany;
+import com.air.main.model.AirCompany;
 
 import java.util.List;
 
@@ -34,8 +34,8 @@ public interface AirCompanyService {
 
     /**
      *
-     * @param id - client ID;
-     * @return - client object;
+     * @param id - company ID;
+     * @return - AirCompany object;
      */
     AirCompany read(int id);
 }

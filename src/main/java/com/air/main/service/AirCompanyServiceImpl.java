@@ -1,6 +1,7 @@
-package com.air.demo.service;
+package com.air.main.service;
 
-import com.air.demo.model.AirCompany;
+import com.air.main.model.AirCompany;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Component
 public class AirCompanyServiceImpl implements AirCompanyService {
     private static final Map<Integer, AirCompany> AIR_COMPANY_REPOSITORY_MAP = new HashMap<>();
 

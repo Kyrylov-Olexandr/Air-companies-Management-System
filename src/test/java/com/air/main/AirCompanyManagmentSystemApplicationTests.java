@@ -1,10 +1,10 @@
-package com.air.demo;
+package com.air.main;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AirCompaniesManagementSystemApplicationTests {
+class AirCompanyManagmentSystemApplicationTests {
 
 	@Test
 	void contextLoads() {

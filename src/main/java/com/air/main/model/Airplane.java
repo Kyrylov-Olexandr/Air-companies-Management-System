@@ -1,4 +1,4 @@
-package com.air.demo.model;
+package com.air.main.model;
 
 public class Airplane {
     private int id;

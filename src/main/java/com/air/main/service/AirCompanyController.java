@@ -1,6 +1,6 @@
-package com.air.demo.service;
+package com.air.main.service;
 
-import com.air.demo.model.AirCompany;
+import com.air.main.model.AirCompany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
