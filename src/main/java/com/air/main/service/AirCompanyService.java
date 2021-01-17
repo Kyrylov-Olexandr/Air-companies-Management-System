@@ -1,6 +1,6 @@
 package com.air.main.service;
 
-import com.air.main.model.AirCompany;
+import com.air.main.models.AirCompany;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.air.main.model;
+package com.air.main.models;
 
 public enum FlightStatuses {
     ACTIVE,

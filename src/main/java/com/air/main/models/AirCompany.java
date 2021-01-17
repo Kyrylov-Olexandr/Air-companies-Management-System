@@ -1,6 +1,11 @@
-package com.air.main.model;
+package com.air.main.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class AirCompany {
+    @Id
     private int id;
     private String name;
     private String companyType;
@@ -9,7 +14,6 @@ public class AirCompany {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
