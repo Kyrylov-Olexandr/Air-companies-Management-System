@@ -12,12 +12,10 @@ import java.util.List;
 @RestController
 public class AirCompanyController {
     private final AirCompanyService AIR_COMPANY_SERVICE;
-    private final AirCompanyRepository AIR_COMPANY_REPO;
 
     @Autowired
     public AirCompanyController(AirCompanyService AIR_COMPANY_SERVICE, AirCompanyRepository AIR_COMPANY_REPO) {
         this.AIR_COMPANY_SERVICE = AIR_COMPANY_SERVICE;
-        this.AIR_COMPANY_REPO = AIR_COMPANY_REPO;
     }
 
     @PostMapping(value = "/companies")

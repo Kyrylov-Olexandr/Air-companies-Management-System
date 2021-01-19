@@ -1,6 +1,10 @@
 package com.air.main.models;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Flight {
+    @Id
     private int id;
     private String flightStatus;
     private int airCompanyId;
@@ -25,7 +29,7 @@ public class Flight {
         return flightStatus;
     }
 
-    public void setFlightStatus(String flightStatus) {
+    public void setFlightStatus(FlightStatuses flightStatus) {
         this.flightStatus = flightStatus;
     }
 

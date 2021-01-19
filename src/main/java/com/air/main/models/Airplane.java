@@ -1,6 +1,10 @@
 package com.air.main.models;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Airplane {
+    @Id
     private int id;
     private String name;
     private int factorySerialNumber;

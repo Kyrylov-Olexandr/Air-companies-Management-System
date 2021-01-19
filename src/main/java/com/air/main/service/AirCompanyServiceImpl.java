@@ -28,14 +28,13 @@ public class AirCompanyServiceImpl implements AirCompanyService {
     @Override
     public boolean delete(int id) {
         AIR_COMPANY_REPO.deleteById(id);
-        return AIR_COMPANY_REPO.existsById(id);
+        return !AIR_COMPANY_REPO.existsById(id);
     }
 
     @Override
     public boolean update(AirCompany airCompany, int id) {
         if (AIR_COMPANY_REPO.existsById(id)) {
             airCompany.setId(id);
-            //AirCompany airCompany1 = AIR_COMPANY_REPO.findById(id).get();
             AIR_COMPANY_REPO.save(airCompany);
             return true;
         }
