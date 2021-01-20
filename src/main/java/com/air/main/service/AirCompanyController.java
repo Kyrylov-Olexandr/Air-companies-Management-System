@@ -11,22 +11,22 @@ import java.util.List;
 
 @RestController
 public class AirCompanyController {
-    private final AirCompanyService AIR_COMPANY_SERVICE;
+    private AirCompanyService companyService;
 
     @Autowired
-    public AirCompanyController(AirCompanyService AIR_COMPANY_SERVICE, AirCompanyRepository AIR_COMPANY_REPO) {
-        this.AIR_COMPANY_SERVICE = AIR_COMPANY_SERVICE;
+    public AirCompanyController(AirCompanyService companyService, AirCompanyRepository AIR_COMPANY_REPO) {
+        this.companyService = companyService;
     }
 
     @PostMapping(value = "/companies")
     public ResponseEntity<?> create(@RequestBody AirCompany airCompany) {
-        AIR_COMPANY_SERVICE.create(airCompany);
+        companyService.create(airCompany);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/companies")
     public ResponseEntity<List<AirCompany>> read() {
-        final List<AirCompany> airCompanies = AIR_COMPANY_SERVICE.readAll();
+        final List<AirCompany> airCompanies = companyService.readAll();
 
         return airCompanies != null && !airCompanies.isEmpty()
                 ? new ResponseEntity<>(airCompanies, HttpStatus.OK)
@@ -35,7 +35,7 @@ public class AirCompanyController {
 
     @GetMapping(value = "/companies/{id}")
     public ResponseEntity<AirCompany> read(@PathVariable(name = "id") int id) {
-        final AirCompany airCompany = AIR_COMPANY_SERVICE.read(id);
+        final AirCompany airCompany = companyService.read(id);
 
         return airCompany != null
                 ? new ResponseEntity<>(airCompany, HttpStatus.OK)
@@ -44,7 +44,7 @@ public class AirCompanyController {
 
     @PutMapping(value = "/companies/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody AirCompany airCompany) {
-        final boolean updated = AIR_COMPANY_SERVICE.update(airCompany, id);
+        final boolean updated = companyService.update(airCompany, id);
 
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)
@@ -52,7 +52,7 @@ public class AirCompanyController {
     }
     @DeleteMapping(value = "/companies/{id}")
     public ResponseEntity<?> delete (@PathVariable(name = "id") int id) {
-        boolean deleted = AIR_COMPANY_SERVICE.delete(id);
+        boolean deleted = companyService.delete(id);
 
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)

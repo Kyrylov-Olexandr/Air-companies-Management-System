@@ -11,31 +11,32 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 public class AirCompanyServiceImpl implements AirCompanyService {
-    private static final AtomicInteger COMPANY_ID_HOLDER = new AtomicInteger();
-    private final AirCompanyRepository AIR_COMPANY_REPO;
+    private static final AtomicInteger ID_HOLDER = new AtomicInteger();
+    private final AirCompanyRepository companyRepo;
 
-    public AirCompanyServiceImpl(AirCompanyRepository AIR_COMPANY_REPO) {
-        this.AIR_COMPANY_REPO = AIR_COMPANY_REPO;
+    public AirCompanyServiceImpl(AirCompanyRepository companyRepo) {
+        this.companyRepo = companyRepo;
     }
 
     @Override
-    public void create(AirCompany airCompany) {
-        final int companyId = COMPANY_ID_HOLDER.incrementAndGet();
+    public int create(AirCompany airCompany) {
+        final int companyId = ID_HOLDER.incrementAndGet();
         airCompany.setId(companyId);
-        AIR_COMPANY_REPO.save(airCompany);
+        companyRepo.save(airCompany);
+        return companyId;
     }
 
     @Override
     public boolean delete(int id) {
-        AIR_COMPANY_REPO.deleteById(id);
-        return !AIR_COMPANY_REPO.existsById(id);
+        companyRepo.deleteById(id);
+        return !companyRepo.existsById(id);
     }
 
     @Override
     public boolean update(AirCompany airCompany, int id) {
-        if (AIR_COMPANY_REPO.existsById(id)) {
+        if (companyRepo.existsById(id)) {
             airCompany.setId(id);
-            AIR_COMPANY_REPO.save(airCompany);
+            companyRepo.save(airCompany);
             return true;
         }
 
@@ -44,11 +45,11 @@ public class AirCompanyServiceImpl implements AirCompanyService {
 
     @Override
     public List<AirCompany> readAll() {
-        return new ArrayList<>((Collection<? extends AirCompany>) AIR_COMPANY_REPO.findAll());
+        return new ArrayList<>((Collection<? extends AirCompany>) companyRepo.findAll());
     }
 
     @Override
     public AirCompany read(int id) {
-        return AIR_COMPANY_REPO.findById(id).get();
+        return companyRepo.findById(id).get();
     }
 }

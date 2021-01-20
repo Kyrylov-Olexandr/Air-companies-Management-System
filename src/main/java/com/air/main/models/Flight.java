@@ -1,21 +1,28 @@
 package com.air.main.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+
 
 @Entity
 public class Flight {
     @Id
     private int id;
-    private String flightStatus;
+    private String status;
     private int airCompanyId;
     private int airplaneId;
     private String departureCountry;
     private String destinationCountry;
     private int distance;
-    private int estimatedFlightTime;
-    private int endedAt;
-    private String delayStartedAt;
-    private String createdAt;
+    private Time estimatedTime;
+    private Timestamp endedAt;
+    private Timestamp delayStartedAt;
+    private Timestamp createdAt;
+    private Timestamp startedAt;
 
     public int getId() {
         return id;
@@ -25,12 +32,12 @@ public class Flight {
         this.id = id;
     }
 
-    public String getFlightStatus() {
-        return flightStatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setFlightStatus(FlightStatuses flightStatus) {
-        this.flightStatus = flightStatus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getAirCompanyId() {
@@ -73,35 +80,58 @@ public class Flight {
         this.distance = distance;
     }
 
-    public int getEstimatedFlightTime() {
-        return estimatedFlightTime;
+    public Time getEstimatedTime() {
+        return estimatedTime;
     }
 
-    public void setEstimatedFlightTime(int estimatedFlightTime) {
-        this.estimatedFlightTime = estimatedFlightTime;
+    public void setEstimatedTime(Time estimatedTime) {
+        this.estimatedTime = estimatedTime;
     }
 
-    public int getEndedAt() {
-        return endedAt;
-    }
-
-    public void setEndedAt(int endedAt) {
+    public void setEndedAt(Timestamp endedAt) {
         this.endedAt = endedAt;
     }
 
-    public String getDelayStartedAt() {
-        return delayStartedAt;
-    }
-
-    public void setDelayStartedAt(String delayStartedAt) {
+    public void setDelayStartedAt(Timestamp delayStartedAt) {
         this.delayStartedAt = delayStartedAt;
     }
 
-    public String getCreatedAt() {
+    public void setStartedAt(Timestamp startedAt) {
+        this.startedAt = startedAt;
+    }
+//    public void setEstimatedTime(Time estimatedTime) {
+//        this.estimatedTime = estimatedTime;
+//    }
+
+    public Timestamp getEndedAt() {
+        return endedAt;
+    }
+
+//    public void setEndedAt() {
+//        this.endedAt = new Timestamp(new Date().getTime());
+//    }
+
+    public Timestamp getDelayStartedAt() {
+        return delayStartedAt;
+    }
+
+//    public void setDelayStartedAt() {
+//        this.delayStartedAt = new Timestamp(new Date().getTime());
+//    }
+
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+
+    public Timestamp getStartedAt() {
+        return startedAt;
+    }
+
+//    public void setStartedAt() {
+//        this.startedAt = new Timestamp(new Date().getTime());
+//    }
 }

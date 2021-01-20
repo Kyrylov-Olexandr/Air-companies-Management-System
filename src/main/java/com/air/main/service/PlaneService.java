@@ -5,10 +5,10 @@ import com.air.main.models.Airplane;
 
 import java.util.List;
 
-public interface AirplaneService {
+public interface PlaneService {
     boolean changeCompany(int airplaneId, int airCompanyId);
 
-    void create(Airplane airplane);
+    int create(Airplane airplane);
 
     boolean delete(int id);
 

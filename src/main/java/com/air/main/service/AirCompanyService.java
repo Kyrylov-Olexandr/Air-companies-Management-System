@@ -9,7 +9,7 @@ public interface AirCompanyService {
      * Create new company
      * @param airCompany - company to create;
      */
-    void create(AirCompany airCompany);
+    int create(AirCompany airCompany);
 
     /**
      * Delete company by ID
