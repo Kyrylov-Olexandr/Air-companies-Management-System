@@ -5,8 +5,10 @@ import com.air.main.models.FlightStatuses;
 import com.air.main.repo.FlightRepository;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -20,27 +22,46 @@ public class FlightServiceImpl implements FlightService{
         this.flightRepo = flightRepo;
     }
 
-//    @Override
-//    public boolean changeStatus(int id, String status) {
-//        boolean founded = flightRepo.findById(id).isPresent();
-//        if (founded) {
-//            Flight flight = flightRepo.findById(id).get();
-//            if (FlightStatuses.DELAYED.getTitle().equals(status)) {
-//                flight.setDelayStartedAt();
-//            } else if (FlightStatuses.ACTIVE.getTitle().equals(status)) {
-//                flight.setStartedAt();
-//            } else if (FlightStatuses.COMPLETED.getTitle().equals(status)) {
-//                flight.setEndedAt();
-//            }
-//            flight.setStatus(status);
-//            flightRepo.save(flight);
-//        }
-//        return founded;
-//    }
+    @Override
+    public boolean changeStatus(int id, String status) {
+        boolean founded = flightRepo.findById(id).isPresent();
+        Date today = new Date();
+        Timestamp timestamp = new Timestamp(today.getTime());
+
+        if (founded) {
+            Flight flight = flightRepo.findById(id).get();
+            if (FlightStatuses.DELAYED.getTitle().equals(status)) {
+                flight.setDelayStartedAt(timestamp);
+            } else if (FlightStatuses.ACTIVE.getTitle().equals(status)) {
+                flight.setStartedAt(timestamp);
+            } else if (FlightStatuses.COMPLETED.getTitle().equals(status)) {
+                flight.setEndedAt(timestamp);
+            }
+            flight.setStatus(status);
+            flightRepo.save(flight);
+        }
+        return founded;
+    }
 
     @Override
     public List<Flight> findActive() {
-        return findByStatus("active");
+        Date today = new Date();
+        long todayInMillis = today.getTime();
+        long previosDayInMillis = todayInMillis - 86400000;
+        var activeFlights = findByStatus("active");
+        activeFlights.removeIf(flight ->
+                flight.getStartedAt().getTime() > previosDayInMillis);
+        return activeFlights;
+    }
+    @Override
+    public List<Flight> findCompleted() {
+        var completedFlights = findByStatus("completed");
+        completedFlights.removeIf(flight -> {
+            long difference = flight.getStartedAt().getTime() - flight.getEndedAt().getTime();
+            long estimatedTimeInMillis = flight.getEstimatedTime().getTime();
+            return difference > estimatedTimeInMillis;
+        });
+        return completedFlights;
     }
 
     @Override
@@ -74,4 +95,5 @@ public class FlightServiceImpl implements FlightService{
     public List<Flight> readAll() {
         return new ArrayList<>((Collection<? extends Flight>) flightRepo.findAll());
     }
+
 }

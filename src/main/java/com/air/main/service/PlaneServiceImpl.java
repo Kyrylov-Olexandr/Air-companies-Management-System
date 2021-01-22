@@ -1,5 +1,6 @@
 package com.air.main.service;
 
+import com.air.main.models.AirCompany;
 import com.air.main.models.Airplane;
 import com.air.main.repo.AirplaneRepository;
 import org.springframework.stereotype.Component;
@@ -41,5 +42,16 @@ public class PlaneServiceImpl implements PlaneService {
     @Override
     public Airplane read(int id) {
         return planeRepo.findById(id).get();
+    }
+
+    @Override
+    public boolean update(Airplane airplane, int id) {
+        if (planeRepo.existsById(id)) {
+            airplane.setId(id);
+            planeRepo.save(airplane);
+            return true;
+        }
+
+        return false;
     }
 }

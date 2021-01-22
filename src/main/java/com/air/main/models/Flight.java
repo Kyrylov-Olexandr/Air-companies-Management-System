@@ -24,6 +24,9 @@ public class Flight {
     private Timestamp createdAt;
     private Timestamp startedAt;
 
+    public Flight() {
+    }
+
     public int getId() {
         return id;
     }
@@ -88,36 +91,21 @@ public class Flight {
         this.estimatedTime = estimatedTime;
     }
 
-    public void setEndedAt(Timestamp endedAt) {
-        this.endedAt = endedAt;
-    }
-
-    public void setDelayStartedAt(Timestamp delayStartedAt) {
-        this.delayStartedAt = delayStartedAt;
-    }
-
-    public void setStartedAt(Timestamp startedAt) {
-        this.startedAt = startedAt;
-    }
-//    public void setEstimatedTime(Time estimatedTime) {
-//        this.estimatedTime = estimatedTime;
-//    }
-
     public Timestamp getEndedAt() {
         return endedAt;
     }
 
-//    public void setEndedAt() {
-//        this.endedAt = new Timestamp(new Date().getTime());
-//    }
+    public void setEndedAt(Timestamp endedAt) {
+        this.endedAt = endedAt;
+    }
 
     public Timestamp getDelayStartedAt() {
         return delayStartedAt;
     }
 
-//    public void setDelayStartedAt() {
-//        this.delayStartedAt = new Timestamp(new Date().getTime());
-//    }
+    public void setDelayStartedAt(Timestamp delayStartedAt) {
+        this.delayStartedAt = delayStartedAt;
+    }
 
     public Timestamp getCreatedAt() {
         return createdAt;
@@ -131,7 +119,7 @@ public class Flight {
         return startedAt;
     }
 
-//    public void setStartedAt() {
-//        this.startedAt = new Timestamp(new Date().getTime());
-//    }
+    public void setStartedAt(Timestamp startedAt) {
+        this.startedAt = startedAt;
+    }
 }

@@ -6,7 +6,7 @@ import com.air.main.models.FlightStatuses;
 import java.util.List;
 
 public interface FlightService {
-//    boolean changeStatus(int id, String status);
+    boolean changeStatus(int id, String status);
 
     List<Flight> findActive();
 
@@ -19,5 +19,7 @@ public interface FlightService {
     Flight read(int id);
 
     List<Flight> readAll();
+
+    List<Flight> findCompleted();
 }
 

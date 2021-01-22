@@ -18,30 +18,14 @@ public class FlightController {
         this.flightService = flightService;
     }
 
-//    @PutMapping(value = "/flights/{id}/status")
-//    public ResponseEntity<?> changeStatus (@PathVariable(name = "id") int id,
-//                                           @RequestParam(value = "status") String status) {
-//        boolean changed = flightService.changeStatus(id, status);
-//
-//        return changed
-//                ? new ResponseEntity<>(HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-//    }
+    @PutMapping(value = "/flights/{id}/")
+    public ResponseEntity<?> changeStatus (@PathVariable(name = "id") int id,
+                                           @RequestParam(value = "status") String status) {
+        boolean changed = flightService.changeStatus(id, status);
 
-    @GetMapping(value = "/flights/status")
-    public ResponseEntity<List<Flight>> findByStatus (@RequestParam(value = "status") String status) {
-        List flights = flightService.findByStatus(status);
-        return flights != null && !flights.isEmpty()
-                ? new ResponseEntity<>(flights, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping(value = "/flights/status/active")
-    public ResponseEntity<List<Flight>> findActive() {
-        List flights = flightService.findActive();
-        return flights != null && !flights.isEmpty()
-                ? new ResponseEntity<>(flights, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return changed
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping(value = "/flights")
@@ -67,10 +51,34 @@ public class FlightController {
                 ? new ResponseEntity<>(flight, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
     @GetMapping(value = "/flights")
     public ResponseEntity<List<Flight>> read() {
         final List<Flight> flights = flightService.readAll();
 
+        return flights != null && !flights.isEmpty()
+                ? new ResponseEntity<>(flights, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/flights/status")
+    public ResponseEntity<List<Flight>> findByStatus (@RequestParam(value = "status") String status) {
+        List flights = flightService.findByStatus(status);
+        return flights != null && !flights.isEmpty()
+                ? new ResponseEntity<>(flights, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/flights/status/active")
+    public ResponseEntity<List<Flight>> findActive() {
+        List flights = flightService.findActive();
+        return flights != null && !flights.isEmpty()
+                ? new ResponseEntity<>(flights, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @GetMapping(value = "/flights/status/completed")
+    public ResponseEntity<List<Flight>> findCompleted() {
+        List flights = flightService.findCompleted();
         return flights != null && !flights.isEmpty()
                 ? new ResponseEntity<>(flights, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);

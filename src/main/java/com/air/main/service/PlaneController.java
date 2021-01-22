@@ -1,5 +1,6 @@
 package com.air.main.service;
 
+import com.air.main.models.AirCompany;
 import com.air.main.models.Airplane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,5 +47,13 @@ public class PlaneController {
         return airplane != null
                 ? new ResponseEntity<>(airplane, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @PutMapping(value = "/companies/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody Airplane airplane) {
+        final boolean updated = planeService.update(airplane, id);
+
+        return updated
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }

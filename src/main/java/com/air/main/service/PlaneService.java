@@ -1,9 +1,7 @@
 package com.air.main.service;
 
-import com.air.main.models.AirCompany;
-import com.air.main.models.Airplane;
 
-import java.util.List;
+import com.air.main.models.Airplane;
 
 public interface PlaneService {
     boolean changeCompany(int airplaneId, int airCompanyId);
@@ -13,4 +11,6 @@ public interface PlaneService {
     boolean delete(int id);
 
     Airplane read(int id);
+
+    boolean update(Airplane airplane, int id);
 }
