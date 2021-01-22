@@ -1,7 +1,5 @@
 package com.air.main.service;
 
-import com.air.main.models.AirCompany;
-import com.air.main.models.Airplane;
 import com.air.main.models.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

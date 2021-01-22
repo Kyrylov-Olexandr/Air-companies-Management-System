@@ -12,5 +12,5 @@ public interface PlaneService {
 
     Airplane read(int id);
 
-    boolean update(Airplane airplane, int id);
+
 }

@@ -48,12 +48,4 @@ public class PlaneController {
                 ? new ResponseEntity<>(airplane, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    @PutMapping(value = "/companies/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody Airplane airplane) {
-        final boolean updated = planeService.update(airplane, id);
-
-        return updated
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-    }
 }
