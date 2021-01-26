@@ -12,7 +12,7 @@ public class Airplane {
     private int numberOfFlights;
     private int flightDistance;
     private int fuelCapacity;
-    private int type;
+    private String type;
     private String manufacturerCountry;
 
     public int getId() {
@@ -71,11 +71,11 @@ public class Airplane {
         this.fuelCapacity = fuelCapacity;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
