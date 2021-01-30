@@ -2,4 +2,4 @@
 2) Change directory to project folder
 3) Input "docker-compose up"
 4) Wait for build
-5) Run Postman and try endpoints from collection
+5) Run Postman and try requests from collection (https://www.getpostman.com/collections/54f52a4e263f55c3806d)
