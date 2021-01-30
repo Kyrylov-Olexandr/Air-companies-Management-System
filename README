@@ -1,0 +1,5 @@
+1) Run powershell
+2) Change directory to project folder
+3) Input "docker-compose up"
+4) Wait for build
+5) Run Postman and try endpoints from collection

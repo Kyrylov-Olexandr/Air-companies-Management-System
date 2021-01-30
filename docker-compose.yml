@@ -1,0 +1,36 @@
+version: '2.1'
+
+services:
+
+  myapp-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=air_db
+      - MYSQL_USER=myapp-user
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+
+
+  myapp-main:
+    image: main:0.0.1-SNAPSHOT
+    restart: on-failure
+    depends_on:
+      myapp-mysql:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=myapp-mysql
+      - DATABASE_USER=myapp-user
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=air_db
+      - DATABASE_PORT=3306
+
+
+
